@@ -22,7 +22,7 @@ builder.Services.AddScoped(typeof(IKafkaProducer), typeof(KafkaProducer));
 builder.Services.AddSingleton(typeof(IElasticEvents<>), typeof(ElasticEvents<>));
 
 builder.Services.AddHealthChecks()
-    .AddElasticsearch(elasticsearchUri: builder.Configuration.GetValue<string>("ElasticSearchSettings:Endpoint"), name: "ElasticSearch", failureStatus: HealthStatus.Unhealthy, tags: new[] { "Services" })
+                .AddElasticsearch(elasticsearchUri: builder.Configuration.GetValue<string>("ElasticSearchSettings:Endpoint"), name: "ElasticSearch", failureStatus: HealthStatus.Unhealthy, tags: new[] { "Services" })
                 .AddCheck<APIHealthCheck>(name: "WeatherForecast API", tags: new[] { "API" })
                 .AddCheck<KafkaConnectionHealthCheck>(name: "Kafka Connection", tags: new[] { "Services" })
                 .AddCheck<kafkaMetricsHealthChecks>(name: "Kafka Metrics", tags: new[] { "Services" })
